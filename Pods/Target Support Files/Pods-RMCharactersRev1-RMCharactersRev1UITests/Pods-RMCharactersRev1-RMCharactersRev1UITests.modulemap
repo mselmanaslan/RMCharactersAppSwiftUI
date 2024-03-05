@@ -1,0 +1,6 @@
+framework module Pods_RMCharactersRev1_RMCharactersRev1UITests {
+  umbrella header "Pods-RMCharactersRev1-RMCharactersRev1UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
