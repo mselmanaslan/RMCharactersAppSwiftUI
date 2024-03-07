@@ -4,7 +4,7 @@ import SQLite
 class DatabaseService {
     static let shared = DatabaseService()
     private var dbConnection: Connection!
-    
+
     init() {
         do {
             let fileURL = try FileManager.default.url(
@@ -24,7 +24,7 @@ class DatabaseService {
         }
     }
 
-    func toggleFavorite(character: FavCharacter) {
+    func toggleFavorite(character: DbCharacter) {
         guard let dbConn = dbConnection else {
             print("Error: Database connection is nil")
             return
@@ -63,8 +63,8 @@ class DatabaseService {
             fatalError("Error creating table: \(error)")
         }
     }
-    //
-    private func addFavorite(character: FavCharacter) {
+
+    private func addFavorite(character: DbCharacter) {
         do {
             try dbConnection.run("""
                 INSERT INTO favCharacters (characterId, name, image, status, species, gender, origin, location, episodes )
@@ -85,7 +85,7 @@ class DatabaseService {
             print("Error adding favorite: \(error)")
         }
     }
-    private func removeFavorite(character: FavCharacter) {
+    private func removeFavorite(character: DbCharacter) {
         do {
             try dbConnection.run("DELETE FROM favCharacters WHERE characterId = ?", [character.id])
             print("Favori çıkardım : \(character.name)")
@@ -93,8 +93,8 @@ class DatabaseService {
             print("Error removing favorite: \(error)")
         }
     }
-    func fetchAllFavorites() -> [FavCharacter] {
-        var characters: [FavCharacter] = []
+    func fetchAllFavorites() -> [DbCharacter] {
+        var characters: [DbCharacter] = []
         do {
             let favCharacters = Table("favCharacters")
             let id = Expression<String>("characterId")
@@ -110,7 +110,7 @@ class DatabaseService {
 
             let charactersFromDB = try dbConnection.prepare(query)
             for character in charactersFromDB {
-                let favCharacter = FavCharacter(id: String(character[id]),
+                let favCharacter = DbCharacter(id: String(character[id]),
                                                 name: character[name],
                                                 image: character[image],
                                                 status: character[status],

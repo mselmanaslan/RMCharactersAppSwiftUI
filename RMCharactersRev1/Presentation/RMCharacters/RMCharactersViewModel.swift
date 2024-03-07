@@ -1,12 +1,12 @@
 import Foundation
 class RMCharactersViewModel: ObservableObject {
     private let characterService = CharacterService()
-    @Published var characters: [Character] = []
-    @Published var filteredCharacters: [Character] = []
-    @Published var selectedCharacter: FavCharacter?
+
+    @Published var favCharacters: [DbCharacter] = []
+    @Published var filteredCharacters: [DbCharacter] = []
+    @Published var selectedCharacter: DbCharacter?
     @Published var favoriteIconTapped = false
     @Published var isFilterMenuOpen = false
-    @Published var isListFiltered: String = ""
     @Published var filterName: String = ""
     @Published var filterSpecies: String = ""
     @Published var filterStatus: String = ""
@@ -15,22 +15,7 @@ class RMCharactersViewModel: ObservableObject {
 
     init() {
         fetchCharacters {
-            print(self.characters.count)
         }
-    }
-
-   func isLastCharacter(_ character: Character) -> Bool {
-        if let lastCharacter = characters.last, lastCharacter.id == character.id {
-            return true
-        }
-        return false
-    }
-
-    func isLastFilteredCharacter(_ character: Character) -> Bool {
-        if let lastFilteredCharacter = filteredCharacters.last, lastFilteredCharacter.id == character.id {
-            return true
-        }
-        return false
     }
 
     func updateFilteredCharacters() {
@@ -46,17 +31,29 @@ class RMCharactersViewModel: ObservableObject {
                                                  status: filterStatus,
                                                  species: filterSpecies,
                                                  gender: filterGender) { characters in
-            self.filteredCharacters.append(contentsOf: characters)
+            // Karakterlerin her birini favori karakterlere dönüştür
+            let favCharacters = characters.map { character in
+                return character.getFavCharacter()
+            }
+            // Dönüştürülmüş karakterleri filtrelenmiş karakter listesine ekle
+            self.filteredCharacters.append(contentsOf: favCharacters)
+            // Tamamlandı bildirimi
             completion()
         }
     }
 
     func fetchCharacters(completion: @escaping () -> Void) {
         characterService.fetchCharacters { characters in
-            self.characters.append(contentsOf: characters)
+            // Karakterlerin her birini favori karakterlere dönüştür
+            let favCharacters = characters.map { character in
+                return character.getFavCharacter()
+            }
+            // Dönüştürülmüş karakterleri karakter listesine ekle
+            self.favCharacters.append(contentsOf: favCharacters)
+            // Tamamlandı bildirimi
             completion()
-            print(characters.count)
+            // Karakter sayısını yazdır
+            print(favCharacters.count)
         }
     }
-    
 }

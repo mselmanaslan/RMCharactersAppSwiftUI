@@ -9,7 +9,7 @@ class CharacterService {
     var prevSpecies: String?
     var prevGender: String?
 
-    func fetchCharacters(completion: @escaping ([Character]) -> Void) {
+    func fetchCharacters(completion: @escaping ([ApiCharacter]) -> Void) {
         guard let url = URL(string: "https://rickandmortyapi.com/api/character/?page=\(pageNumber)") else {
             print("Geçersiz URL")
             return
@@ -57,7 +57,7 @@ class CharacterService {
         status: String,
         species: String,
         gender: String,
-        completion: @escaping ([Character]) -> Void
+        completion: @escaping ([ApiCharacter]) -> Void
     ) {
             if name != prevName || status != prevStatus || species != prevSpecies || gender != prevGender {
                 // Eğer herhangi bir filtre değiştiyse, sayfa numarasını sıfırla
@@ -65,7 +65,7 @@ class CharacterService {
             }
 
         guard let url = URL(
-            string:"https://rickandmortyapi.com/api/character/?page=\(filteredPageNumber)&name=\(name)&status=\(status)&species=\(species)&gender=\(gender)")
+            string: "https://rickandmortyapi.com/api/character/?page=\(filteredPageNumber)&name=\(name)&status=\(status)&species=\(species)&gender=\(gender)")
         else {
             print("Geçersiz URL")
             return

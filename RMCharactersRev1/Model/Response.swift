@@ -1,4 +1,4 @@
 struct ApiResponse: Codable {
-    let results: [Character]
+    let results: [ApiCharacter]
     let info: Info
 }

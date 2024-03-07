@@ -4,14 +4,14 @@ import Combine
 class FavoritedCharactersViewModel: ObservableObject {
 
     private let databaseService = DatabaseService()
-    @Published var selectedCharacter: FavCharacter?
+    @Published var selectedCharacter: DbCharacter?
     @Published var isFilterMenuOpen = false
     @Published var filterName: String = ""
     @Published var filterSpecies: String = ""
     @Published var filterStatus: String = ""
     @Published var filterGender: String = ""
     @Published var isDetailsViewOpen = false
-    @Published var characters: [FavCharacter] = []
+    @Published var characters: [DbCharacter] = []
 
     func fetchFavoriteCharacters() {
         self.characters.removeAll()

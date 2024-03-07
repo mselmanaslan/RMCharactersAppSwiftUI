@@ -1,8 +1,8 @@
 struct CharacterResponse: Codable {
-   let results: [Character]
+   let results: [ApiCharacter]
 }
 
-struct Character: Codable, Identifiable {
+struct ApiCharacter: Codable, Identifiable {
     let id: Int
     var name: String
     let status: String
@@ -16,8 +16,8 @@ struct Character: Codable, Identifiable {
     let url: String
     let created: String
 
-    func getFavCharacter() -> FavCharacter {
-        return FavCharacter(
+    func getFavCharacter() -> DbCharacter {
+        return DbCharacter(
             id: String(self.id),
             name: self.name,
             image: self.image,

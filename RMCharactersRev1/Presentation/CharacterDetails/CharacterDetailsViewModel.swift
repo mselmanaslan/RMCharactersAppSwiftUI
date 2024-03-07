@@ -4,13 +4,13 @@ import Combine
 
 class CharacterDetailsViewModel: ObservableObject {
     var database = DatabaseService()
-    let character: FavCharacter
+    let character: DbCharacter
 
     @Published var isFavorited: Bool = false
     var favoritePublisher = PassthroughSubject<Bool, Never>()
     private var cancellables = Set<AnyCancellable>()
 
-    init(character: FavCharacter?) {
+    init(character: DbCharacter?) {
         guard let character = character else {
             fatalError("Character is nil")
         }
@@ -27,7 +27,7 @@ class CharacterDetailsViewModel: ObservableObject {
         isFavorited = favorites.contains { $0.id == characterId }
     }
 
-    func toggleFav(character: FavCharacter) {
+    func toggleFav(character: DbCharacter) {
         database.toggleFavorite(character: character)
         favoritePublisher.send(!isFavorited)
     }

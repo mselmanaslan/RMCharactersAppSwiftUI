@@ -3,13 +3,13 @@ import Combine
 
 class CharacterRowViewModel: ObservableObject {
     var database = DatabaseService()
-    let character: FavCharacter
-    @Published var selectedCharacter: FavCharacter?
+    let character: DbCharacter
+    @Published var selectedCharacter: DbCharacter?
     @Published var isFavorited: Bool = false
     var favoritePublisher = PassthroughSubject<Bool, Never>()
     private var cancellables = Set<AnyCancellable>()
 
-    init(characterId: String, character: FavCharacter?) {
+    init(characterId: String, character: DbCharacter?) {
         self.character = character!
             fetchFavorites(characterId: characterId)
             favoritePublisher
@@ -23,7 +23,7 @@ class CharacterRowViewModel: ObservableObject {
         isFavorited = favorites.contains { $0.id == characterId }
     }
 
-    func toggleFav(character: FavCharacter) {
+    func toggleFav(character: DbCharacter) {
         database.toggleFavorite(character: character)
         favoritePublisher.send(!isFavorited)
     }

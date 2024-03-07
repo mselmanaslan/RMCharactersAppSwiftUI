@@ -1,6 +1,6 @@
 import Foundation
 
-struct FavCharacter: Codable, Identifiable {
+struct DbCharacter: Codable, Identifiable {
     let id: String
     let name: String
     let image: String
