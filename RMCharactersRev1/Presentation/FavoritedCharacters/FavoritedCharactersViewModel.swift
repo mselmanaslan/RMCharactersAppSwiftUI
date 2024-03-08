@@ -13,6 +13,26 @@ class FavoritedCharactersViewModel: ObservableObject {
     @Published var isDetailsViewOpen = false
     @Published var characters: [DbCharacter] = []
 
+    var listViewModel: CustomListViewModel {
+            return CustomListViewModel(
+                filterName: filterName,
+                filterSpecies: filterSpecies,
+                filterStatus: filterStatus,
+                filterGender: filterGender,
+                isListFiltered: true,
+                characters: characters,
+                onFavoriteButtonTapped: {
+                    self.fetchFavoriteCharacters()
+                },
+                onTapGestureTapped: { character in
+                    self.selectedCharacter = character
+                    self.isDetailsViewOpen.toggle()
+                },
+                isLastCharacter: {},
+                isLastFilteredCharacter: {})
+
+        }
+
     func fetchFavoriteCharacters() {
         self.characters.removeAll()
         self.characters = databaseService.fetchAllFavorites()

@@ -20,6 +20,7 @@ class CharacterRowViewModel: ObservableObject {
 
     func fetchFavorites(characterId: String) {
         let favorites = database.fetchAllFavorites()
+        // tek karakterin kontrolünü sağla
         isFavorited = favorites.contains { $0.id == characterId }
     }
 

@@ -33,21 +33,8 @@ struct FavoritedCharactersView: View {
                     }
                     Spacer()
                 } else {
-                    CustomListView(viewModel: CustomListViewModel(
-                        filterName: viewModel.filterName,
-                        filterSpecies: viewModel.filterSpecies,
-                        filterStatus: viewModel.filterStatus,
-                        filterGender: viewModel.filterGender,
-                        characters: viewModel.characters), onFavoriteButtonTapped: {
-                            print("tiklandıim")
-                            viewModel.fetchFavoriteCharacters()
-                        }, onTapGestureTapped: { character in
-                            viewModel.selectedCharacter = character
-                            viewModel.isDetailsViewOpen.toggle()
-                        },
-                                   isLastCharacter: {},
-                                   isLastFilteredCharacter: {}
-                    )      
+                    CustomListView(viewModel: viewModel.listViewModel
+                    )
                 }
             }
             .onAppear {

@@ -9,26 +9,10 @@ import SwiftUI
 
 struct CustomListView: View {
     @ObservedObject var viewModel: CustomListViewModel
-    var onFavoriteButtonTapped: () -> Void
-    var onTapGestureTapped: (DbCharacter) -> Void
-    var isLastCharacter: () -> Void
-    var isLastFilteredCharacter: () -> Void
-    @State private var showText = false
+    @State var showText = false
 
     var body: some View {
-        VStack {
-            let filteredCharacters = viewModel.characters.filter { character in
-                let nameMatch = viewModel.filterName.isEmpty ||
-                character.name.localizedCaseInsensitiveContains(viewModel.filterName)
-                let statusMatch = viewModel.filterStatus.isEmpty ||
-                character.status == viewModel.filterStatus
-                let speciesMatch = viewModel.filterSpecies.isEmpty ||
-                character.species.localizedCaseInsensitiveContains(viewModel.filterSpecies)
-                let genderMatch = viewModel.filterGender.isEmpty ||
-                character.gender == viewModel.filterGender
-                return nameMatch && statusMatch && speciesMatch && genderMatch
-            }
-            if filteredCharacters.isEmpty {
+        if viewModel.selectedList.isEmpty {
                 VStack {
                     if showText {
                         Spacer()
@@ -66,21 +50,21 @@ struct CustomListView: View {
                     }
                 }
             } else {
-                List(filteredCharacters, id: \.id) { character in
+                List(viewModel.selectedList, id: \.id) { character in
                     CharacterRow(viewModel: CharacterRowViewModel(
                         characterId: String(character.id),
                         character: character),
                                  onFavoriteButtonTapped: {
-                        onFavoriteButtonTapped()
+                        viewModel.onFavoriteButtonTapped()
                     })
                     .onTapGesture {
                         viewModel.selectedCharacter = character
-                        onTapGestureTapped(character)
+                        viewModel.onTapGestureTapped(character)
                     }
                     .onAppear {
                         if viewModel.isLastCharacter(character) {
-                            isLastCharacter()
-                            isLastFilteredCharacter()
+                            viewModel.isLastCharacter()
+                            viewModel.isLastFilteredCharacter()
                             print("sona geldim")
                         }
                         showText = false
@@ -95,5 +79,4 @@ struct CustomListView: View {
                 .buttonStyle(BorderlessButtonStyle())
             }
         }
-    }
 }

@@ -2,66 +2,25 @@ import SwiftUI
 
 struct RMCharactersView: View {
     @ObservedObject var viewModel = RMCharactersViewModel()
-    
+ 
     var body: some View {
         NavigationView {
             VStack {
                 header
-                    .onAppear {
-                        viewModel.favoriteIconTapped.toggle()
-                    }
                 if viewModel.isFilterMenuOpen {
                     filterMenu
                 } else {
                     filterButtons
                 }
-                if viewModel.filterName.isEmpty && viewModel.filterSpecies.isEmpty &&
-                    viewModel.filterStatus.isEmpty && viewModel.filterGender.isEmpty {
-                    CustomListView(viewModel: CustomListViewModel(
-                        filterName: viewModel.filterName,
-                        filterSpecies: viewModel.filterSpecies,
-                        filterStatus: viewModel.filterStatus,
-                        filterGender: viewModel.filterGender,
-                        characters: viewModel.favCharacters),
-                                   onFavoriteButtonTapped: {},
-                                   onTapGestureTapped: {character in
-                        viewModel.selectedCharacter = character
-                        viewModel.isDetailsViewOpen.toggle()},
-                                   isLastCharacter: {
-                        viewModel.fetchCharacters {
-                            print(viewModel.filteredCharacters.count)
-                        }
-                    },
-                                   isLastFilteredCharacter: {})
+                if viewModel.isWaiting {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
                 } else {
-                    CustomListView(viewModel: CustomListViewModel(
-                        filterName: viewModel.filterName,
-                        filterSpecies: viewModel.filterSpecies,
-                        filterStatus: viewModel.filterStatus,
-                        filterGender: viewModel.filterGender,
-                        characters: viewModel.filteredCharacters),
-                                   onFavoriteButtonTapped: {},
-                                   onTapGestureTapped: {character in
-                        viewModel.selectedCharacter = character
-                        viewModel.isDetailsViewOpen.toggle()},
-                                   isLastCharacter: {},
-                                   isLastFilteredCharacter: {
-                        viewModel.fetchFilteredCharacters {
-                            print(viewModel.filteredCharacters.count)
+                    CustomListView(viewModel: viewModel.listViewModel)
+                    .onChange(of: viewModel.combinedFilters) { _ in
+                        viewModel.updateFilteredList()
                         }
-                    })
-                    .onChange(of: viewModel.filterName) { _ in
-                        viewModel.updateFilteredCharacters()
-                    }
-                    .onChange(of: viewModel.filterSpecies) { _ in
-                        viewModel.updateFilteredCharacters()
-                    }
-                    .onChange(of: viewModel.filterStatus) { _ in
-                        viewModel.updateFilteredCharacters()
-                    }
-                    .onChange(of: viewModel.filterGender) { _ in
-                        viewModel.updateFilteredCharacters()
-                    }
                 }
             }
         }
