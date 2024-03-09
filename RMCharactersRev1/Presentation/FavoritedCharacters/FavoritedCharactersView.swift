@@ -5,7 +5,7 @@ struct FavoritedCharactersView: View {
     var body: some View {
         NavigationView {
             VStack {
-                header
+                HeaderView(viewModel: viewModel.headerViewModel)
                 if viewModel.isFilterMenuOpen {
                     filterMenu
                 } else {
@@ -50,28 +50,6 @@ struct FavoritedCharactersView: View {
                                      onFavoriteButtonTapped: { }
                 )
             })
-        }
-    }
-
-    private var header: some View {
-        HStack {
-            Text("Favorite \nCharacters")
-                .font(.title)
-                .fontWeight(.bold)
-                .lineLimit(2)
-                .shadow(color: .black, radius: 0.5)
-                .foregroundColor(.black)
-                .padding(.leading, 20)
-            Spacer()
-            Button {
-                viewModel.isFilterMenuOpen.toggle()
-                print("CHVW isFİlterMenuOpen: \(viewModel.isFilterMenuOpen)")
-            } label: {
-                Text("Filter")
-                    .font(.system(size: 26))
-                    .bold()
-                    .padding()
-            }
         }
     }
 

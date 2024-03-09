@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0D1856912B988ACB0093249C /* CustomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1856902B988ACB0093249C /* CustomListView.swift */; };
 		0D1856932B988B800093249C /* CustomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1856922B988B800093249C /* CustomListViewModel.swift */; };
+		0D1856962B9B6A9D0093249C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1856952B9B6A9D0093249C /* HeaderView.swift */; };
+		0D1856982B9B6ACC0093249C /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1856972B9B6ACC0093249C /* HeaderViewModel.swift */; };
 		0D263D4D2B836F35006FB24B /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D263D4C2B836F35006FB24B /* CharacterDetailsView.swift */; };
 		0D263D522B84E2F2006FB24B /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D263D512B84E2F2006FB24B /* DatabaseService.swift */; };
 		0D263D582B8604B0006FB24B /* RMCharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D263D572B8604B0006FB24B /* RMCharactersViewModel.swift */; };
@@ -60,6 +62,8 @@
 		08FEDC2BD8DB74962E3AC268 /* Pods_RMCharactersRev1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RMCharactersRev1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D1856902B988ACB0093249C /* CustomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListView.swift; sourceTree = "<group>"; };
 		0D1856922B988B800093249C /* CustomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListViewModel.swift; sourceTree = "<group>"; };
+		0D1856952B9B6A9D0093249C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		0D1856972B9B6ACC0093249C /* HeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
 		0D263D4C2B836F35006FB24B /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
 		0D263D512B84E2F2006FB24B /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		0D263D572B8604B0006FB24B /* RMCharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharactersViewModel.swift; sourceTree = "<group>"; };
@@ -135,6 +139,15 @@
 			path = CustomList;
 			sourceTree = "<group>";
 		};
+		0D1856942B9B6A8F0093249C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				0D1856952B9B6A9D0093249C /* HeaderView.swift */,
+				0D1856972B9B6ACC0093249C /* HeaderViewModel.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		0D263D4E2B84C159006FB24B /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +189,7 @@
 		0D263D5F2B862953006FB24B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0D1856942B9B6A8F0093249C /* Header */,
 				0D18568F2B988A990093249C /* CustomList */,
 				0DAE0A2D2B7FAB35005C34DA /* CharacterRow */,
 				0D263D602B86295F006FB24B /* FavoriteIcon */,
@@ -553,9 +567,11 @@
 				0DAE0A242B7F92A9005C34DA /* FavoritedCharactersView.swift in Sources */,
 				0DAE0A2A2B7FA907005C34DA /* PageInfo.swift in Sources */,
 				0D263D4D2B836F35006FB24B /* CharacterDetailsView.swift in Sources */,
+				0D1856982B9B6ACC0093249C /* HeaderViewModel.swift in Sources */,
 				0D263D642B872962006FB24B /* CharacterRowViewModel.swift in Sources */,
 				0DAE0A372B8330F8005C34DA /* DbCharacter.swift in Sources */,
 				0D263D732B8B9F27006FB24B /* FavoritedCharactersViewModel.swift in Sources */,
+				0D1856962B9B6A9D0093249C /* HeaderView.swift in Sources */,
 				0DAE0A2F2B7FAB4C005C34DA /* FavoriteIconView.swift in Sources */,
 				0DAE0A202B7F9210005C34DA /* NavigatorTabView.swift in Sources */,
 				0D1856912B988ACB0093249C /* CustomListView.swift in Sources */,

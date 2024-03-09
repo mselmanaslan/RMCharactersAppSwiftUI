@@ -6,7 +6,7 @@ struct RMCharactersView: View {
     var body: some View {
         NavigationView {
             VStack {
-                header
+                HeaderView(viewModel: viewModel.headerViewModel)
                 if viewModel.isFilterMenuOpen {
                     filterMenu
                 } else {
@@ -28,28 +28,6 @@ struct RMCharactersView: View {
             CharacterDetailsView(viewModel: CharacterDetailsViewModel(character: viewModel.selectedCharacter),
                                  onFavoriteButtonTapped: {}
             )
-        }
-    }
-
-    private var header: some View {
-        HStack {
-            Text("Rick&Morty \nCharacters")
-                .font(.title)
-                .fontWeight(.bold)
-                .lineLimit(2)
-                .shadow(color: .black, radius: 0.5)
-                .foregroundColor(.black)
-                .padding(.leading, 20)
-            Spacer()
-            Button {
-                viewModel.isFilterMenuOpen.toggle()
-                print("CHVW isFİlterMenuOpen: \(viewModel.isFilterMenuOpen)")
-            } label: {
-                Text("Filter")
-                    .font(.system(size: 26))
-                    .bold()
-                    .padding()
-            }
         }
     }
 

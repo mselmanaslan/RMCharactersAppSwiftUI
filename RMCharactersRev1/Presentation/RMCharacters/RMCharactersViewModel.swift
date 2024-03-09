@@ -18,8 +18,15 @@ class RMCharactersViewModel: ObservableObject {
     var combinedFilters: String {
             return filterName + filterStatus + filterSpecies  + filterGender
         }
-
-
+    
+    var headerViewModel: HeaderViewModel {
+            return HeaderViewModel(
+                isFilterMenuOpen: {
+                    self.isFilterMenuOpen.toggle()
+                }, headerTitle: ("Rich&Morty \nCharacters")
+            )
+        }
+    
     var listViewModel: CustomListViewModel {
             return CustomListViewModel(
                 filterName: filterName,

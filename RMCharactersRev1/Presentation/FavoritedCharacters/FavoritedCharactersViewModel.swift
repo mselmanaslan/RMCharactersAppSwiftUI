@@ -12,6 +12,15 @@ class FavoritedCharactersViewModel: ObservableObject {
     @Published var filterGender: String = ""
     @Published var isDetailsViewOpen = false
     @Published var characters: [DbCharacter] = []
+    
+    var headerViewModel: HeaderViewModel {
+            return HeaderViewModel(
+                isFilterMenuOpen: {
+                    self.isFilterMenuOpen.toggle()
+                }, headerTitle: ("Favorite \nCharacters")
+            )
+        }
+
 
     var listViewModel: CustomListViewModel {
             return CustomListViewModel(
