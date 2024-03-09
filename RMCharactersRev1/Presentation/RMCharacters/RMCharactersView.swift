@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RMCharactersView: View {
     @ObservedObject var viewModel = RMCharactersViewModel()
- 
+
     var body: some View {
         NavigationView {
             VStack {

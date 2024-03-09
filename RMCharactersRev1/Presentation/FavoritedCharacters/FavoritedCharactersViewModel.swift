@@ -18,7 +18,7 @@ class FavoritedCharactersViewModel: ObservableObject {
             )
         }
 
-    var filterViewModel: FilterMenuViewModel{
+    var filterViewModel: FilterMenuViewModel {
         return FilterMenuViewModel(isFilterMenuOpen: isFilterMenuOpen, filter: filter, setFilterParameters: { input in
             self.filter = input
         })

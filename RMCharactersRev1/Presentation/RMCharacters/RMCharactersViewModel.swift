@@ -12,7 +12,7 @@ class RMCharactersViewModel: ObservableObject {
     @Published var isWaiting: Bool = false
     var delayInSeconds: Double = 0
 
-    var filterViewModel: FilterMenuViewModel{
+    var filterViewModel: FilterMenuViewModel {
         return FilterMenuViewModel(isFilterMenuOpen: isFilterMenuOpen, filter: filter, setFilterParameters: { input in
             self.filter = input
         })
@@ -53,7 +53,7 @@ class RMCharactersViewModel: ObservableObject {
         }
     }
 
-    func updateFilteredList(){
+    func updateFilteredList() {
         isWaiting = true
         delayInSeconds += 1.3
         apiCharacters.removeAll()

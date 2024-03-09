@@ -10,8 +10,6 @@ import SwiftUI
 struct HeaderView: View {
     @ObservedObject var viewModel: HeaderViewModel
 
-    
-
     var body: some View {
         HStack {
             Text(viewModel.headerTitle)

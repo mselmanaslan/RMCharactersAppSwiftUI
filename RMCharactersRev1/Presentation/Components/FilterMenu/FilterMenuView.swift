@@ -8,7 +8,7 @@ import SwiftUI
 
 struct FilterMenuView: View {
     @ObservedObject var viewModel: FilterMenuViewModel
-    
+
     var body: some View {
         VStack {
             if viewModel.isFilterMenuOpen {

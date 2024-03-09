@@ -126,4 +126,14 @@ class DatabaseService {
         }
         return characters
     }
+    func isCharacterInFavorites(characterId: String) -> Bool {
+        do {
+            let query = "SELECT COUNT(*) FROM favCharacters WHERE characterId = ?"
+            let count = try dbConnection.scalar(query, [characterId]) as? Int64 ?? 0
+            return count > 0
+        } catch {
+            print("Error fetching favorites: \(error)")
+            return false
+        }
+    }
 }

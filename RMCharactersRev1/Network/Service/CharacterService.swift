@@ -3,16 +3,13 @@ import Foundation
 class CharacterService {
     private var pageNumber = 1
     private var fetchLastPage = 1
-    var prevName: String?
-    var prevStatus: String?
-    var prevSpecies: String?
-    var prevGender: String?
+    var prevFilter: Filter?
 
     func fetchCharacters(
         filter: Filter,
         completion: @escaping ([ApiCharacter]) -> Void
     ) {
-        if filter.name != prevName || filter.status != prevStatus || filter.species != prevSpecies || filter.gender != prevGender {
+        if filter != prevFilter {
                 // Eğer herhangi bir filtre değiştiyse, sayfa numarasını sıfırla
                 pageNumber = 1
             }
@@ -75,9 +72,6 @@ class CharacterService {
             }
         }.resume()
         // Dışarıdan alınan filtre değişkenlerini güncelle
-        prevName = filter.name
-        prevStatus = filter.status
-        prevSpecies = filter.species
-        prevGender = filter.gender
+        prevFilter = filter
     }
 }

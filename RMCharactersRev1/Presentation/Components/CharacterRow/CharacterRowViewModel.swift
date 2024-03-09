@@ -11,17 +11,15 @@ class CharacterRowViewModel: ObservableObject {
 
     init(characterId: String, character: DbCharacter?) {
         self.character = character!
-            fetchFavorites(characterId: characterId)
+            isCharacterInFavorites(characterId: characterId)
             favoritePublisher
                 .receive(on: DispatchQueue.main)
                 .assign(to: \.isFavorited, on: self)
                 .store(in: &cancellables)
     }
 
-    func fetchFavorites(characterId: String) {
-        let favorites = database.fetchAllFavorites()
-        // tek karakterin kontrolünü sağla
-        isFavorited = favorites.contains { $0.id == characterId }
+    func isCharacterInFavorites(characterId: String) {
+        isFavorited = database.isCharacterInFavorites(characterId: characterId)
     }
 
     func toggleFav(character: DbCharacter) {
