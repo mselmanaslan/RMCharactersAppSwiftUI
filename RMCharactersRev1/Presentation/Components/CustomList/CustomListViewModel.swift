@@ -11,10 +11,7 @@ import Combine
 class CustomListViewModel: ObservableObject {
     @Published var selectedCharacter: DbCharacter?
     @Published var isListEmpty: Bool = false
-    @Published var filterName: String = ""
-    @Published var filterSpecies: String = ""
-    @Published var filterStatus: String = ""
-    @Published var filterGender: String = ""
+    @Published var filter = Filter(name: "", status: "", species: "", gender: "")
     @Published var characters: [DbCharacter] = []
     @Published var onFavoriteButtonTapped: () -> Void
     @Published var onTapGestureTapped: (DbCharacter) -> Void
@@ -28,28 +25,22 @@ class CustomListViewModel: ObservableObject {
 
     var filteredCharacters: [DbCharacter] {
         return characters.filter { character in
-            let nameMatch = filterName.isEmpty || character.name.localizedCaseInsensitiveContains(filterName)
-            let statusMatch = filterStatus.isEmpty || character.status == filterStatus
-            let speciesMatch = filterSpecies.isEmpty || character.species.localizedCaseInsensitiveContains(filterSpecies)
-            let genderMatch = filterGender.isEmpty || character.gender == filterGender
+            let nameMatch = filter.name.isEmpty || character.name.localizedCaseInsensitiveContains(filter.name)
+            let statusMatch = filter.status.isEmpty || character.status == filter.status
+            let speciesMatch = filter.species.isEmpty || character.species.localizedCaseInsensitiveContains(filter.species)
+            let genderMatch = filter.gender.isEmpty || character.gender == filter.gender
             return nameMatch && statusMatch && speciesMatch && genderMatch
         }
     }
 
-    init( filterName: String,
-          filterSpecies: String,
-          filterStatus: String,
-          filterGender: String,
+    init( filter: Filter,
           isListFiltered: Bool,
           characters: [DbCharacter],
           onFavoriteButtonTapped: @escaping () -> Void,
           onTapGestureTapped: @escaping (DbCharacter) -> Void,
           isLastCharacter: @escaping () -> Void,
           isLastFilteredCharacter: @escaping () -> Void) {
-        self.filterName = filterName
-        self.filterSpecies = filterSpecies
-        self.filterStatus = filterStatus
-        self.filterGender = filterGender
+        self.filter = filter
         self.isListFiltered = isListFiltered
         self.characters = characters
         self.onFavoriteButtonTapped = onFavoriteButtonTapped

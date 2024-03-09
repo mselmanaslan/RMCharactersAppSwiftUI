@@ -6,13 +6,10 @@ class FavoritedCharactersViewModel: ObservableObject {
     private let databaseService = DatabaseService()
     @Published var selectedCharacter: DbCharacter?
     @Published var isFilterMenuOpen = false
-    @Published var filterName: String = ""
-    @Published var filterSpecies: String = ""
-    @Published var filterStatus: String = ""
-    @Published var filterGender: String = ""
+    @Published var filter = Filter(name: "", status: "", species: "", gender: "")
     @Published var isDetailsViewOpen = false
     @Published var characters: [DbCharacter] = []
-    
+
     var headerViewModel: HeaderViewModel {
             return HeaderViewModel(
                 isFilterMenuOpen: {
@@ -21,13 +18,15 @@ class FavoritedCharactersViewModel: ObservableObject {
             )
         }
 
+    var filterViewModel: FilterMenuViewModel{
+        return FilterMenuViewModel(isFilterMenuOpen: isFilterMenuOpen, filter: filter, setFilterParameters: { input in
+            self.filter = input
+        })
+    }
 
     var listViewModel: CustomListViewModel {
             return CustomListViewModel(
-                filterName: filterName,
-                filterSpecies: filterSpecies,
-                filterStatus: filterStatus,
-                filterGender: filterGender,
+                filter: filter,
                 isListFiltered: true,
                 characters: characters,
                 onFavoriteButtonTapped: {
