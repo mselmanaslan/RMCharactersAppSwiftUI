@@ -1,6 +1,0 @@
-framework module Pods_RMCharactersRev1Tests {
-  umbrella header "Pods-RMCharactersRev1Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
