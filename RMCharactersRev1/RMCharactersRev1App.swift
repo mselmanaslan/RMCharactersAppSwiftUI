@@ -3,7 +3,6 @@
 //  RMCharactersRev1
 //
 //  Created by Selman Aslan on 16.02.2024.
-//
 
 import SwiftUI
 

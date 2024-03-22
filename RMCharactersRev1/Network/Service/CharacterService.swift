@@ -1,77 +1,70 @@
 import Foundation
 
-class CharacterService {
-    private var pageNumber = 1
-    private var fetchLastPage = 1
-    var prevFilter: Filter?
+final class CharacterService {
 
     func fetchCharacters(
         filter: Filter,
-        completion: @escaping ([ApiCharacter]) -> Void
+        pageNumber: Int,
+        completion: @escaping (ServiceResponse<[ApiCharacter]>) -> Void
     ) {
-        if filter != prevFilter {
-                // Eğer herhangi bir filtre değiştiyse, sayfa numarasını sıfırla
-                pageNumber = 1
-            }
+        let config = URLSessionConfiguration.default
+        config.urlCache = nil
+        let session = URLSession(configuration: config)
 
-        guard let url = URL(
-            string: "https://rickandmortyapi.com/api/character/?page=\(pageNumber)&name=\(filter.name)&status=\(filter.status)&species=\(filter.species)&gender=\(filter.gender)")
+        guard let url = URLBuilder()
+            .setPath("/api/character/")
+            .addQueryItem(name: "page", value: String(pageNumber))
+            .addQueryItem(name: "name", value: filter.name)
+            .addQueryItem(name: "status", value: filter.status)
+            .addQueryItem(name: "species", value: filter.species)
+            .addQueryItem(name: "gender", value: filter.gender)
+            .build()
         else {
-            print("Geçersiz URL")
+            DispatchQueue.main.async {
+                completion(.error("Geçersiz URL"))
+            }
             return
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print("Hata: \(error)")
                 DispatchQueue.main.async {
-                    completion([])
+                    completion(.error("Hata: \(error.localizedDescription)"))
                 }
                 return
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                print("Geçersiz yanıt")
                 DispatchQueue.main.async {
-                    completion([])
+                    completion(.error("Geçersiz yanıt"))
                 }
                 return
             }
 
             guard let responseData = data else {
-                print("Boş veri")
                 DispatchQueue.main.async {
-                    completion([])
+                    completion(.error("Boş veri"))
                 }
                 return
             }
 
             do {
                 let decoder = JSONDecoder()
-                let response = try decoder.decode(ApiResponse.self, from: responseData)
-                DispatchQueue.main.async {
-                    // response.info.pages > filteredPageNumber kontrolü
-                    if response.info.pages > self.pageNumber {
-                        // veriyi çek ve page numberi bir arttır
-                        completion(response.results)
-                        self.pageNumber += 1
-                    } else if response.info.pages == self.pageNumber {
-                        // son sayfa veriyi çek ve page numberi bir arttır hatalı url döndürsün artık
-                        completion(response.results)
-                        self.pageNumber += 1
-                    } else {
-                        print("Sayfa sonu...")
+                let response = try decoder.decode(CharacterApiResponse.self, from: responseData)
+                if response.info.pages >= pageNumber {
+                    // veriyi çek
+                    DispatchQueue.main.async {
+                        completion(.success(response.results))
                     }
+                } else {
+                    print("Sayfa sonu...")
                 }
             } catch {
-                print("Veri dönüştürme hatası: \(error)")
                 DispatchQueue.main.async {
-                    completion([])
+                    completion(.error("Veri dönüştürme hatası: \(error.localizedDescription)"))
                 }
             }
         }.resume()
-        // Dışarıdan alınan filtre değişkenlerini güncelle
-        prevFilter = filter
     }
 }

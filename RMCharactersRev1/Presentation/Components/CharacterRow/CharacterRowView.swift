@@ -2,23 +2,18 @@ import SwiftUI
 
 struct CharacterRow: View {
     @ObservedObject var viewModel: CharacterRowViewModel
-    var onFavoriteButtonTapped: () -> Void
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("\(viewModel.determineStatusInfo(viewModel.character.status)) \(viewModel.character.name)")
+                    Text(viewModel.statusInfo)
                         .font(.headline)
                         .bold()
-                        .foregroundColor(viewModel.character.status == "Dead" ? .red :
-                                            (viewModel.character.status == "Alive" ? .green : .black))
+                        .foregroundColor(viewModel.statusColor)
                 }
                 Spacer()
-                FavoriteIconView(viewModel: FavoriteIconViewModel(isFavorited: viewModel.isFavorited,
-                    favoriteIconAction: {
-                        viewModel.toggleFav(character: viewModel.character)
-                        onFavoriteButtonTapped()
-                }))
+                FavoriteIconView(viewModel: viewModel.favIconViewModel)
             }
             HStack(alignment: .bottom) {
                 if let imageURL = URL(string: viewModel.character.image) {
@@ -30,8 +25,7 @@ struct CharacterRow: View {
                             .overlay(
                                 Circle()
                                     .stroke(
-                                        Color(viewModel.character.status == "Alive" ? .green :
-                                                (viewModel.character.status == "Dead" ? .red : .black)),
+                                        Color(viewModel.statusColor),
                                         lineWidth: 6
                                     )
                             )
@@ -45,19 +39,17 @@ struct CharacterRow: View {
                     HStack {
                         Text("Species:")
                             .padding(.top)
-                        Text(viewModel.character.species)
+                        Text(LocalizedStringKey(viewModel.character.species))
                             .bold()
                             .padding(.top)
                     }
                     HStack {
                         Text("Gender:")
                             .padding(.top)
-                        Text("\(viewModel.character.gender)")
+                        Text(LocalizedStringKey(viewModel.character.gender))
                             .padding(.top)
                             .bold()
-                            .foregroundColor(viewModel.character.gender == "Male" ? .blue :
-                                                (viewModel.character.gender == "Female" ? .red :
-                                                    (viewModel.character.gender == "Genderless" ? .purple : .black)))
+                            .foregroundColor(viewModel.genderColor)
                     }
                     Spacer()
                 }
@@ -67,7 +59,6 @@ struct CharacterRow: View {
         .padding()
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(color: Color(viewModel.character.status == "Dead" ? .red :
-                                (viewModel.character.status == "Alive" ? .green : .black)), radius: 5)
+        .shadow(color: Color(viewModel.statusColor), radius: 5)
     }
 }

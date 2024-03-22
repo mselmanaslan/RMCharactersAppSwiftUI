@@ -1,0 +1,38 @@
+// General UI
+"Rick&Morty \nCharacters" = "Rick&Morty \nCharacters";
+"Favorite \nCharacters" = "Favorite \nCharacters";
+"Filter" = "Filter";
+"Favorites" = "Favorites";
+"Characters" = "Characters";
+"Name   " = "Name   ";
+"Character Name" = "Character Name";
+"Status" = "Status";
+"All" = "All";
+"Dead" = "Dead";
+"Alive" = "Alive";
+"Unknown" = "Unknown";
+"Species" = "Species";
+"Gender" = "Gender";
+"Male" = "Male";
+"Female" = "Female";
+"Genderless" = "Genderless";
+"Filter By" = "Filter By";
+"Species:" = "Species:";
+"Type:" = "Type:";
+"Gender:" = "Gender:";
+"Origin:" = "Origin:";
+"Last Seen:" = "Last Seen:";
+"Episodes the Character Was Seen In:" = "Episodes the Character Was Seen In:";
+// If list is empty
+"Oops..." = "Oops...";
+"It looks like you haven't added" = "It looks like you haven't added";
+"any favorite characters yet." = "any favorite characters yet.";
+// If filtering yields no results
+"Sorry..." = "Sorry...";
+"No characters found matching" = "No characters found matching";
+"your search criteria." = "your search criteria.";
+"Please try adjusting your filters." = "Please try adjusting your filters.";
+// API character information
+"Human" = "Human";
+"Alien" = "Alien";
+"unknown" = "unknown";

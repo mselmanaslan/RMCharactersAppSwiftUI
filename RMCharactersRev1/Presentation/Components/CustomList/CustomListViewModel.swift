@@ -8,15 +8,13 @@
 import Foundation
 import Combine
 
-class CustomListViewModel: ObservableObject {
+final class CustomListViewModel: ObservableObject {
     @Published var selectedCharacter: DbCharacter?
-    @Published var isListEmpty: Bool = false
     @Published var filter = Filter(name: "", status: "", species: "", gender: "")
     @Published var characters: [DbCharacter] = []
-    @Published var onFavoriteButtonTapped: () -> Void
-    @Published var onTapGestureTapped: (DbCharacter) -> Void
-    @Published var isLastCharacter: () -> Void
-    @Published var isLastFilteredCharacter: () -> Void
+    @Published var onFavoriteButtonTapped: VoidClosure
+    @Published var onCharacterDetailsButtonTapped: (DbCharacter) -> Void
+    @Published var isLastCharacter: VoidClosure
     @Published var isListFiltered: Bool
 
     var selectedList: [DbCharacter] {
@@ -36,23 +34,21 @@ class CustomListViewModel: ObservableObject {
     init( filter: Filter,
           isListFiltered: Bool,
           characters: [DbCharacter],
-          onFavoriteButtonTapped: @escaping () -> Void,
-          onTapGestureTapped: @escaping (DbCharacter) -> Void,
-          isLastCharacter: @escaping () -> Void,
-          isLastFilteredCharacter: @escaping () -> Void) {
+          onFavoriteButtonTapped: @escaping VoidClosure,
+          onChracterDetailsButtonTapped: @escaping (DbCharacter) -> Void,
+          isLastCharacter: @escaping VoidClosure) {
         self.filter = filter
         self.isListFiltered = isListFiltered
         self.characters = characters
         self.onFavoriteButtonTapped = onFavoriteButtonTapped
-        self.onTapGestureTapped = onTapGestureTapped
+        self.onCharacterDetailsButtonTapped = onChracterDetailsButtonTapped
         self.isLastCharacter = isLastCharacter
-        self.isLastFilteredCharacter = isLastFilteredCharacter
     }
 
     func isLastCharacter(_ character: DbCharacter) -> Bool {
-         if let lastCharacter = characters.last, lastCharacter.id == character.id {
-             return true
-         }
-         return false
-     }
+        if let lastCharacter = characters.last, lastCharacter.id == character.id {
+            return true
+        }
+        return false
+    }
 }

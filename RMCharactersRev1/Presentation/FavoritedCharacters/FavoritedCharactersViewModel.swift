@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class FavoritedCharactersViewModel: ObservableObject {
+final class FavoritedCharactersViewModel: ObservableObject {
 
     private let databaseService = DatabaseService()
     @Published var selectedCharacter: DbCharacter?
@@ -11,12 +11,12 @@ class FavoritedCharactersViewModel: ObservableObject {
     @Published var characters: [DbCharacter] = []
 
     var headerViewModel: HeaderViewModel {
-            return HeaderViewModel(
-                isFilterMenuOpen: {
-                    self.isFilterMenuOpen.toggle()
-                }, headerTitle: ("Favorite \nCharacters")
-            )
-        }
+        return HeaderViewModel(
+            isFilterMenuOpen: {
+                self.isFilterMenuOpen.toggle()
+            }, headerTitle: ("Favorite \nCharacters")
+        )
+    }
 
     var filterViewModel: FilterMenuViewModel {
         return FilterMenuViewModel(isFilterMenuOpen: isFilterMenuOpen, filter: filter, setFilterParameters: { input in
@@ -24,22 +24,27 @@ class FavoritedCharactersViewModel: ObservableObject {
         })
     }
 
-    var listViewModel: CustomListViewModel {
-            return CustomListViewModel(
-                filter: filter,
-                isListFiltered: true,
-                characters: characters,
-                onFavoriteButtonTapped: {
-                    self.fetchFavoriteCharacters()
-                },
-                onTapGestureTapped: { character in
-                    self.selectedCharacter = character
-                    self.isDetailsViewOpen.toggle()
-                },
-                isLastCharacter: {},
-                isLastFilteredCharacter: {})
+    var detailsViewModel: CharacterDetailsViewModel {
+        return CharacterDetailsViewModel(
+            character: selectedCharacter,
+            onFavoriteButtonTapped: {
+            })
+    }
 
-        }
+    var listViewModel: CustomListViewModel {
+        return CustomListViewModel(
+            filter: filter,
+            isListFiltered: true,
+            characters: characters,
+            onFavoriteButtonTapped: {
+                self.fetchFavoriteCharacters()
+            },
+            onChracterDetailsButtonTapped: { [weak self] character in
+                self?.selectedCharacter = character
+                self?.isDetailsViewOpen.toggle()
+            },
+            isLastCharacter: {})
+    }
 
     func fetchFavoriteCharacters() {
         self.characters.removeAll()

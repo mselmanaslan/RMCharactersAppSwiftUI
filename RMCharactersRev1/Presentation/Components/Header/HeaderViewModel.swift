@@ -1,10 +1,10 @@
 import Foundation
 
-class HeaderViewModel: ObservableObject {
-    @Published var isFilterMenuOpen: () -> Void
+final class HeaderViewModel: ObservableObject {
+    @Published var isFilterMenuOpen: VoidClosure
     @Published var headerTitle: String
 
-    init(isFilterMenuOpen: @escaping () -> Void, headerTitle: String) {
+    init(isFilterMenuOpen: @escaping VoidClosure, headerTitle: String) {
         self.isFilterMenuOpen = isFilterMenuOpen
         self.headerTitle = headerTitle
     }

@@ -14,19 +14,16 @@ struct RMCharactersView: View {
                     Spacer()
                 } else {
                     CustomListView(viewModel: viewModel.listViewModel)
-                    .onChange(of: viewModel.filter) { _ in
-                        viewModel.updateFilteredList()
+                        .onChange(of: viewModel.filter) { _ in
+                            viewModel.updateFilteredCharacters()
                         }
                 }
             }
         }
         .sheet(isPresented: $viewModel.isDetailsViewOpen) {
-            CharacterDetailsView(viewModel: CharacterDetailsViewModel(character: viewModel.selectedCharacter),
-                                 onFavoriteButtonTapped: {}
-            )
+            CharacterDetailsView(viewModel: viewModel.detailsViewModel)
         }
     }
-
 }
 
 struct RMCharactersView_Previews: PreviewProvider {

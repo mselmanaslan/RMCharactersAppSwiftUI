@@ -34,11 +34,15 @@
 		0DAE0A262B7FA45F005C34DA /* ApiCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A252B7FA45F005C34DA /* ApiCharacter.swift */; };
 		0DAE0A282B7FA61E005C34DA /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A272B7FA61E005C34DA /* CharacterService.swift */; };
 		0DAE0A2A2B7FA907005C34DA /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A292B7FA907005C34DA /* PageInfo.swift */; };
-		0DAE0A2C2B7FA92A005C34DA /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A2B2B7FA92A005C34DA /* Response.swift */; };
+		0DAE0A2C2B7FA92A005C34DA /* CharacterApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A2B2B7FA92A005C34DA /* CharacterApiResponse.swift */; };
 		0DAE0A2F2B7FAB4C005C34DA /* FavoriteIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A2E2B7FAB4C005C34DA /* FavoriteIconView.swift */; };
 		0DAE0A352B832F4E005C34DA /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0DAE0A342B832F4E005C34DA /* SQLite */; };
 		0DAE0A372B8330F8005C34DA /* DbCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A362B8330F8005C34DA /* DbCharacter.swift */; };
 		0DAE0A3D2B834442005C34DA /* CharacterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE0A3C2B834442005C34DA /* CharacterRowView.swift */; };
+		0DDBCCBF2BA44B6E00C39769 /* ServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDBCCBE2BA44B6E00C39769 /* ServiceResponse.swift */; };
+		0DDBCCC32BA4772400C39769 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDBCCC22BA4772400C39769 /* TypeAliases.swift */; };
+		0DDBCCC62BA4800600C39769 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0DDBCCC82BA4800600C39769 /* Localizable.strings */; };
+		0DDBCCCB2BA72E3000C39769 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDBCCCA2BA72E3000C39769 /* URLBuilder.swift */; };
 		0FF7A62954A358021B688365 /* Pods_RMCharactersRev1_RMCharactersRev1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51182682DAFAC4DF62D16516 /* Pods_RMCharactersRev1_RMCharactersRev1UITests.framework */; };
 		1CE9E22EEB4E368D06D8A258 /* Pods_RMCharactersRev1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109D344B9ED81C66C64CD24F /* Pods_RMCharactersRev1.framework */; };
 		84996B55BEE80E351FC94C8E /* Pods_RMCharactersRev1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FEDC2BD8DB74962E3AC268 /* Pods_RMCharactersRev1Tests.framework */; };
@@ -93,10 +97,15 @@
 		0DAE0A252B7FA45F005C34DA /* ApiCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCharacter.swift; sourceTree = "<group>"; };
 		0DAE0A272B7FA61E005C34DA /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
 		0DAE0A292B7FA907005C34DA /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
-		0DAE0A2B2B7FA92A005C34DA /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		0DAE0A2B2B7FA92A005C34DA /* CharacterApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterApiResponse.swift; sourceTree = "<group>"; };
 		0DAE0A2E2B7FAB4C005C34DA /* FavoriteIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteIconView.swift; sourceTree = "<group>"; };
 		0DAE0A362B8330F8005C34DA /* DbCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbCharacter.swift; sourceTree = "<group>"; };
 		0DAE0A3C2B834442005C34DA /* CharacterRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRowView.swift; sourceTree = "<group>"; };
+		0DDBCCBE2BA44B6E00C39769 /* ServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceResponse.swift; sourceTree = "<group>"; };
+		0DDBCCC22BA4772400C39769 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		0DDBCCC72BA4800600C39769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0DDBCCC92BA4800F00C39769 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0DDBCCCA2BA72E3000C39769 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		109D344B9ED81C66C64CD24F /* Pods_RMCharactersRev1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RMCharactersRev1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A17395EA142074B776CAA5B /* Pods-RMCharactersRev1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RMCharactersRev1.release.xcconfig"; path = "Target Support Files/Pods-RMCharactersRev1/Pods-RMCharactersRev1.release.xcconfig"; sourceTree = "<group>"; };
 		51182682DAFAC4DF62D16516 /* Pods_RMCharactersRev1_RMCharactersRev1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RMCharactersRev1_RMCharactersRev1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +177,8 @@
 			children = (
 				0DAE0A272B7FA61E005C34DA /* CharacterService.swift */,
 				0D263D512B84E2F2006FB24B /* DatabaseService.swift */,
+				0DDBCCBE2BA44B6E00C39769 /* ServiceResponse.swift */,
+				0DDBCCCA2BA72E3000C39769 /* URLBuilder.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 		0DAE09E42B7F4B43005C34DA = {
 			isa = PBXGroup;
 			children = (
+				0DDBCCC82BA4800600C39769 /* Localizable.strings */,
 				0DAE09EF2B7F4B43005C34DA /* RMCharactersRev1 */,
 				0DAE0A002B7F4B44005C34DA /* RMCharactersRev1Tests */,
 				0DAE0A0A2B7F4B44005C34DA /* RMCharactersRev1UITests */,
@@ -272,6 +284,7 @@
 		0DAE09EF2B7F4B43005C34DA /* RMCharactersRev1 */ = {
 			isa = PBXGroup;
 			children = (
+				0DDBCCC02BA4732500C39769 /* Utils */,
 				0D263D6E2B88C2F2006FB24B /* Core */,
 				0D263D542B860437006FB24B /* Presentation */,
 				0D263D532B86041B006FB24B /* Network */,
@@ -313,7 +326,7 @@
 			children = (
 				0DAE0A252B7FA45F005C34DA /* ApiCharacter.swift */,
 				0DAE0A292B7FA907005C34DA /* PageInfo.swift */,
-				0DAE0A2B2B7FA92A005C34DA /* Response.swift */,
+				0DAE0A2B2B7FA92A005C34DA /* CharacterApiResponse.swift */,
 				0DAE0A362B8330F8005C34DA /* DbCharacter.swift */,
 				0D263D7F2B920A46006FB24B /* DetailsDesign.swift */,
 				0D18569F2B9C87CA0093249C /* Filter.swift */,
@@ -328,6 +341,14 @@
 				0D263D632B872962006FB24B /* CharacterRowViewModel.swift */,
 			);
 			path = CharacterRow;
+			sourceTree = "<group>";
+		};
+		0DDBCCC02BA4732500C39769 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0DDBCCC22BA4772400C39769 /* TypeAliases.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		6DC2472198C1C1661F0E1581 /* Pods */ = {
@@ -445,6 +466,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				tr,
 				Base,
 			);
 			mainGroup = 0DAE09E42B7F4B43005C34DA;
@@ -468,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DAE09F82B7F4B44005C34DA /* Preview Assets.xcassets in Resources */,
+				0DDBCCC62BA4800600C39769 /* Localizable.strings in Resources */,
 				0DAE09F52B7F4B44005C34DA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,6 +604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D263D522B84E2F2006FB24B /* DatabaseService.swift in Sources */,
+				0DDBCCCB2BA72E3000C39769 /* URLBuilder.swift in Sources */,
 				0DAE0A242B7F92A9005C34DA /* FavoritedCharactersView.swift in Sources */,
 				0DAE0A2A2B7FA907005C34DA /* PageInfo.swift in Sources */,
 				0D263D4D2B836F35006FB24B /* CharacterDetailsView.swift in Sources */,
@@ -592,9 +616,11 @@
 				0D1856962B9B6A9D0093249C /* HeaderView.swift in Sources */,
 				0DAE0A2F2B7FAB4C005C34DA /* FavoriteIconView.swift in Sources */,
 				0DAE0A202B7F9210005C34DA /* NavigatorTabView.swift in Sources */,
+				0DDBCCC32BA4772400C39769 /* TypeAliases.swift in Sources */,
 				0D1856912B988ACB0093249C /* CustomListView.swift in Sources */,
-				0DAE0A2C2B7FA92A005C34DA /* Response.swift in Sources */,
+				0DAE0A2C2B7FA92A005C34DA /* CharacterApiResponse.swift in Sources */,
 				0DAE0A262B7FA45F005C34DA /* ApiCharacter.swift in Sources */,
+				0DDBCCBF2BA44B6E00C39769 /* ServiceResponse.swift in Sources */,
 				0D263D802B920A46006FB24B /* DetailsDesign.swift in Sources */,
 				0D263D582B8604B0006FB24B /* RMCharactersViewModel.swift in Sources */,
 				0D1856932B988B800093249C /* CustomListViewModel.swift in Sources */,
@@ -640,6 +666,18 @@
 			targetProxy = 0DAE0A082B7F4B44005C34DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0DDBCCC82BA4800600C39769 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DDBCCC72BA4800600C39769 /* en */,
+				0DDBCCC92BA4800F00C39769 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0DAE0A0F2B7F4B44005C34DA /* Debug */ = {
@@ -783,7 +821,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.selmanaslan.RMCharactersRev1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.selmanaslan.RMCharacters1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -813,7 +851,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.selmanaslan.RMCharactersRev1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.selmanaslan.RMCharacters1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

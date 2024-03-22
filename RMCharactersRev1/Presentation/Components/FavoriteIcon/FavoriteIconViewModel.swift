@@ -1,11 +1,11 @@
 import Foundation
 
-class FavoriteIconViewModel: ObservableObject {
+final class FavoriteIconViewModel: ObservableObject {
 
     @Published var isFavorited: Bool
-    var favoriteIconAction: (() -> Void)?
+    var favoriteIconAction: (VoidClosure)?
 
-    init(isFavorited: Bool, favoriteIconAction: (() -> Void)?) {
+    init(isFavorited: Bool, favoriteIconAction: (VoidClosure)?) {
         self.isFavorited = isFavorited
         self.favoriteIconAction = favoriteIconAction
     }

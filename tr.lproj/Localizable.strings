@@ -1,0 +1,41 @@
+// Genel arayüz
+"Rick&Morty \nCharacters" = "Rick&Morty \nKarakterleri";
+"Favorite \nCharacters" = "Favori \nKarakterler";
+"Filter" = "Filtre";
+"Favorites" = "Favoriler";
+"Characters" = "Karakterler";
+"Name   " = "İsmi       ";
+"Character Name" = "Karakter İsmi";
+"Status" = "Durumu";
+"All" = "Hespi";
+"Dead" = "Ölü";
+"Alive" = "Hayatta";
+"Unknown" = "Bilinmiyor";
+"Species" = "Türü      ";
+"Gender" = "Cinsiyeti";
+"Male" = "Erkek";
+"Female" = "Kadın";
+"Genderless" = "Cinsiyetsiz";
+"Filter By" = "Filtrele";
+"Species:" = "Türü:";
+"Type:" = "Türü:";
+"Gender:" = "Cinsiyeti:";
+"Origin:" = "Kökeni:";
+"Last Seen:" = "Son Görülme:";
+"Episodes the Character Was Seen In:" = "Görüldüğü Bölüm Sayısı:";
+// Liste boş ise
+"Oops..." = "Tüh...";
+"It looks like you haven't added" = "Henüz herhangi bir karakteri";
+"any favorite characters yet." = "favori eklememişsin gibi görünüyor.";
+// Filtreleme boş ise
+"Sorry..." = "Üzgünüm...";
+"No characters found matching" = "Arama kriterlerine uygun bir";
+"your search criteria." = "karakter bulunamadı.";
+"Please try adjusting your filters." = "Lütfen filtrelemelerini gözden geçir.";
+// Api karakter bilgileri
+"Human" = "İnsan";
+"Alien" = "Uzaylı";
+"unknown" = "bilinmiyor";
+
+           
+

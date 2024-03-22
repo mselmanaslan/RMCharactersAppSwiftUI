@@ -12,7 +12,7 @@ struct HeaderView: View {
 
     var body: some View {
         HStack {
-            Text(viewModel.headerTitle)
+            Text(LocalizedStringKey(viewModel.headerTitle))
                 .font(.title)
                 .fontWeight(.bold)
                 .lineLimit(2)

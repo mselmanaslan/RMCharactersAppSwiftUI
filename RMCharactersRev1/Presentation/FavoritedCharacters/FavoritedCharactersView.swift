@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FavoritedCharactersView: View {
     @ObservedObject var viewModel = FavoritedCharactersViewModel()
+
     var body: some View {
         NavigationView {
             VStack {
@@ -22,9 +23,7 @@ struct FavoritedCharactersView: View {
                 viewModel.selectedCharacter = nil
                 viewModel.fetchFavoriteCharacters()
             }, content: {
-                CharacterDetailsView(viewModel: CharacterDetailsViewModel(character: viewModel.selectedCharacter),
-                                     onFavoriteButtonTapped: { }
-                )
+                CharacterDetailsView(viewModel: viewModel.detailsViewModel)
             })
         }
     }
@@ -51,9 +50,7 @@ struct FavoritedCharactersView: View {
             Spacer()
         }
     }
-
 }
-
 struct FavoritedCharactersView_Previews: PreviewProvider {
     static var previews: some View {
         FavoritedCharactersView()

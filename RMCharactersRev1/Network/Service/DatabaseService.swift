@@ -1,9 +1,9 @@
 import Foundation
 import SQLite
 
-class DatabaseService {
+final class DatabaseService {
     static let shared = DatabaseService()
-    private var dbConnection: Connection!
+    private var dbConnection: Connection?
 
     init() {
         do {
@@ -12,12 +12,10 @@ class DatabaseService {
                 .appendingPathComponent("favoritesRev8.sqlite")
             dbConnection = try Connection(fileURL.path)
 
-            if let tableExists =
-                try? dbConnection.scalar("SELECT EXISTS (SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'favCharacters')")
-                as? Int64 {
-                if tableExists == 0 {
-                    createTable()
-                }
+            if let dbConn = dbConnection, let tableExists = try? dbConn.scalar(
+                "SELECT EXISTS (SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'favCharacters')"
+            ) as? Int64, tableExists == 0 {
+                createTable()
             }
         } catch {
             print("Error initializing database: \(error)")
@@ -26,7 +24,7 @@ class DatabaseService {
 
     func toggleFavorite(character: DbCharacter) {
         guard let dbConn = dbConnection else {
-            print("Error: Database connection is nil")
+            print("Database connection is nil")
             return
         }
 
@@ -45,14 +43,18 @@ class DatabaseService {
     }
 
     private func createTable() {
+        guard let dbConn = dbConnection else {
+            fatalError("Database connection is nil")
+        }
+
         do {
-            try dbConnection.run("""
+            try dbConn.run("""
                 CREATE TABLE IF NOT EXISTS favCharacters (
                     characterId TEXT PRIMARY KEY,
                     name TEXT,
                     image TEXT,
                     status TEXT,
-                    species TEXT, -- species sütununu ekleyin
+                    species TEXT,
                     gender TEXT,
                     origin TEXT,
                     location TEXT,
@@ -65,10 +67,15 @@ class DatabaseService {
     }
 
     private func addFavorite(character: DbCharacter) {
+        guard let dbConn = dbConnection else {
+            print("Database connection is nil")
+            return
+        }
+
         do {
-            try dbConnection.run("""
-                INSERT INTO favCharacters (characterId, name, image, status, species, gender, origin, location, episodes )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )
+            try dbConn.run("""
+                INSERT INTO favCharacters (characterId, name, image, status, species, gender, origin, location, episodes)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, [
                     character.id,
                     character.name,
@@ -80,20 +87,32 @@ class DatabaseService {
                     character.location,
                     character.episode
                 ])
-            print("Favori ekledim : \(character.name)")
-        } catch let error {
+            print("Added favorite: \(character.name)")
+        } catch {
             print("Error adding favorite: \(error)")
         }
     }
+
     private func removeFavorite(character: DbCharacter) {
+        guard let dbConn = dbConnection else {
+            print("Database connection is nil")
+            return
+        }
+
         do {
-            try dbConnection.run("DELETE FROM favCharacters WHERE characterId = ?", [character.id])
-            print("Favori çıkardım : \(character.name)")
-        } catch let error {
+            try dbConn.run("DELETE FROM favCharacters WHERE characterId = ?", [character.id])
+            print("Removed favorite: \(character.name)")
+        } catch {
             print("Error removing favorite: \(error)")
         }
     }
+
     func fetchAllFavorites() -> [DbCharacter] {
+        guard let dbConn = dbConnection else {
+            print("Database connection is nil")
+            return []
+        }
+
         var characters: [DbCharacter] = []
         do {
             let favCharacters = Table("favCharacters")
@@ -108,17 +127,17 @@ class DatabaseService {
             let episode = Expression<Int>("episodes")
             let query = favCharacters.select(id, name, image, status, species, gender, origin, location, episode)
 
-            let charactersFromDB = try dbConnection.prepare(query)
+            let charactersFromDB = try dbConn.prepare(query)
             for character in charactersFromDB {
                 let favCharacter = DbCharacter(id: String(character[id]),
-                                                name: character[name],
-                                                image: character[image],
-                                                status: character[status],
-                                                species: character[species],
-                                                gender: character[gender],
-                                                origin: character[origin],
-                                                location: character[location],
-                                                episode: character[episode])
+                                               name: character[name],
+                                               image: character[image],
+                                               status: character[status],
+                                               species: character[species],
+                                               gender: character[gender],
+                                               origin: character[origin],
+                                               location: character[location],
+                                               episode: character[episode])
                 characters.append(favCharacter)
             }
         } catch let error {
@@ -126,13 +145,19 @@ class DatabaseService {
         }
         return characters
     }
+
     func isCharacterInFavorites(characterId: String) -> Bool {
+        guard let dbConn = dbConnection else {
+            print("Database connection is nil")
+            return false
+        }
+
         do {
             let query = "SELECT COUNT(*) FROM favCharacters WHERE characterId = ?"
-            let count = try dbConnection.scalar(query, [characterId]) as? Int64 ?? 0
+            let count = try dbConn.scalar(query, [characterId]) as? Int64 ?? 0
             return count > 0
         } catch {
-            print("Error fetching favorites: \(error)")
+            print("Error checking if character is in favorites: \(error)")
             return false
         }
     }
