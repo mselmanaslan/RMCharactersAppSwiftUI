@@ -22,6 +22,7 @@
 		0D263D6C2B88B40A006FB24B /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D263D6B2B88B40A006FB24B /* CharacterDetailsViewModel.swift */; };
 		0D263D732B8B9F27006FB24B /* FavoritedCharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D263D722B8B9F27006FB24B /* FavoritedCharactersViewModel.swift */; };
 		0D263D802B920A46006FB24B /* DetailsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D263D7F2B920A46006FB24B /* DetailsDesign.swift */; };
+		0D53AC112BBED77900703ECA /* FavoriteServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D53AC102BBED77900703ECA /* FavoriteServiceError.swift */; };
 		0DAE09F12B7F4B43005C34DA /* RMCharactersRev1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAE09F02B7F4B43005C34DA /* RMCharactersRev1App.swift */; };
 		0DAE09F52B7F4B44005C34DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DAE09F42B7F4B44005C34DA /* Assets.xcassets */; };
 		0DAE09F82B7F4B44005C34DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DAE09F72B7F4B44005C34DA /* Preview Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		0D263D6B2B88B40A006FB24B /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
 		0D263D722B8B9F27006FB24B /* FavoritedCharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedCharactersViewModel.swift; sourceTree = "<group>"; };
 		0D263D7F2B920A46006FB24B /* DetailsDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDesign.swift; sourceTree = "<group>"; };
+		0D53AC102BBED77900703ECA /* FavoriteServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteServiceError.swift; sourceTree = "<group>"; };
 		0DAE09ED2B7F4B43005C34DA /* RMCharactersRev1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RMCharactersRev1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DAE09F02B7F4B43005C34DA /* RMCharactersRev1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharactersRev1App.swift; sourceTree = "<group>"; };
 		0DAE09F42B7F4B44005C34DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				0D263D512B84E2F2006FB24B /* DatabaseService.swift */,
 				0DDBCCBE2BA44B6E00C39769 /* ServiceResponse.swift */,
 				0DDBCCCA2BA72E3000C39769 /* URLBuilder.swift */,
+				0D53AC102BBED77900703ECA /* FavoriteServiceError.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				0D1856982B9B6ACC0093249C /* HeaderViewModel.swift in Sources */,
 				0D263D642B872962006FB24B /* CharacterRowViewModel.swift in Sources */,
 				0DAE0A372B8330F8005C34DA /* DbCharacter.swift in Sources */,
+				0D53AC112BBED77900703ECA /* FavoriteServiceError.swift in Sources */,
 				0D18569E2B9C86650093249C /* FilterMenuViewModel.swift in Sources */,
 				0D263D732B8B9F27006FB24B /* FavoritedCharactersViewModel.swift in Sources */,
 				0D1856962B9B6A9D0093249C /* HeaderView.swift in Sources */,

@@ -12,6 +12,7 @@ struct NavigatorTabView: View {
                 }
             RMCharactersView()
                 .tabItem {
+                    Image(systemName: "person.2.fill")
                     Text("Characters")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .bold()

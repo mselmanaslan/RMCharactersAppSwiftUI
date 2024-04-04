@@ -9,13 +9,13 @@ final class DatabaseService {
         do {
             let fileURL = try FileManager.default.url(
                 for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                .appendingPathComponent("favoritesRev8.sqlite")
+                .appendingPathComponent("favoritesRev9.sqlite")
             dbConnection = try Connection(fileURL.path)
 
             if let dbConn = dbConnection, let tableExists = try? dbConn.scalar(
                 "SELECT EXISTS (SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'favCharacters')"
             ) as? Int64, tableExists == 0 {
-                createTable()
+                try createTable()
             }
         } catch {
             print("Error initializing database: \(error)")
@@ -42,9 +42,9 @@ final class DatabaseService {
         }
     }
 
-    private func createTable() {
+    private func createTable() throws {
         guard let dbConn = dbConnection else {
-            fatalError("Database connection is nil")
+            throw FavoriteServiceError.databaseConnectionNil
         }
 
         do {
@@ -62,7 +62,7 @@ final class DatabaseService {
                 )
                 """)
         } catch {
-            fatalError("Error creating table: \(error)")
+            throw FavoriteServiceError.tableCreationError
         }
     }
 
