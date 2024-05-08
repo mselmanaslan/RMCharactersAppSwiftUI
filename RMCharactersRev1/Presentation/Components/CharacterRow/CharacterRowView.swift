@@ -60,5 +60,8 @@ struct CharacterRow: View {
         .background(Color.white)
         .cornerRadius(10)
         .shadow(color: Color(viewModel.statusColor), radius: 5)
+        .onAppear {
+          viewModel.isCharacterInFavorites(characterId: viewModel.character.id)
+        }
     }
 }

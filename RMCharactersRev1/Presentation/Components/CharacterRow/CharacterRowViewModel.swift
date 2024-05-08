@@ -43,7 +43,7 @@ final class CharacterRowViewModel: ObservableObject {
         return characterGenderColor(character.gender)
     }
 
-    private func isCharacterInFavorites(characterId: String) {
+    func isCharacterInFavorites(characterId: String) {
         isFavorited = database.isCharacterInFavorites(characterId: characterId)
     }
 
